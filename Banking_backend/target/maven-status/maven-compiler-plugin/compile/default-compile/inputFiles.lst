@@ -1,0 +1,10 @@
+C:\Users\ausalunk\BankingWorkspace\Banking_backend\src\main\java\com\example\BankingBackendApplication.java
+C:\Users\ausalunk\BankingWorkspace\Banking_backend\src\main\java\com\example\config\TwilioConfig.java
+C:\Users\ausalunk\BankingWorkspace\Banking_backend\src\main\java\com\example\config\WebSecurityConfig.java
+C:\Users\ausalunk\BankingWorkspace\Banking_backend\src\main\java\com\example\controller\OTPController.java
+C:\Users\ausalunk\BankingWorkspace\Banking_backend\src\main\java\com\example\controller\UserController.java
+C:\Users\ausalunk\BankingWorkspace\Banking_backend\src\main\java\com\example\model\User.java
+C:\Users\ausalunk\BankingWorkspace\Banking_backend\src\main\java\com\example\repository\UserRepository.java
+C:\Users\ausalunk\BankingWorkspace\Banking_backend\src\main\java\com\example\service\OTPService.java
+C:\Users\ausalunk\BankingWorkspace\Banking_backend\src\main\java\com\example\service\TwilioService.java
+C:\Users\ausalunk\BankingWorkspace\Banking_backend\src\main\java\com\example\service\UserService.java

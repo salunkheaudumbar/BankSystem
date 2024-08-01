@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="com.example.model.Branch"/>
+    <fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+</qualifiedTypeNameHistroy>

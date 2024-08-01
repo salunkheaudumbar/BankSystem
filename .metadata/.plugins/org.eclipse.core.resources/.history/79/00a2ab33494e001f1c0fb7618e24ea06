@@ -1,0 +1,43 @@
+package com.example.service;
+
+import com.example.model.Branch;
+import com.example.repository.BranchRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class BranchService {
+
+    @Autowired
+    private BranchRepository branchRepository;
+
+    public List<Branch> getAllBranches() {
+        return branchRepository.findAll();
+    }
+
+    public Optional<Branch> getBranchById(Long id) {
+        return branchRepository.findById(id);
+    }
+
+    public Branch createBranch(Branch branch) {
+        return branchRepository.save(branch);
+    }
+
+    public Branch updateBranch(Long id, Branch branchDetails) {
+        Branch branch = branchRepository.findById(id).orElseThrow(() -> new RuntimeException("Branch not found"));
+        branch.setBranchName(branchDetails.getBranchName());
+        branch.setIfscCode(branchDetails.getIfscCode());
+        branch.setState(branchDetails.getState());
+        branch.setCity(branchDetails.getCity());
+        branch.setPincode(branchDetails.getPincode());
+        return branchRepository.save(branch);
+    }
+
+    public void deleteBranch(Long id) {
+        Branch branch = branchRepository.findById(id).orElseThrow(() -> new RuntimeException("Branch not found"));
+        branchRepository.delete(branch);
+    }
+}

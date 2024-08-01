@@ -1,0 +1,73 @@
+package com.example.controller;
+
+import com.example.model.Branch;
+import com.example.model.BranchManager;
+import com.example.service.BranchService;
+import com.example.service.BranchManagerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api")
+@CrossOrigin("*")
+public class BranchController {
+
+    @Autowired
+    private BranchService branchService;
+
+    @Autowired
+    private BranchManagerService branchManagerService;
+
+    @GetMapping("/listAllBranches")
+    public List<Branch> getAllBranches() {
+        return branchService.getAllBranches();
+    }
+
+    @GetMapping("/listAllBranchManagers")
+    public List<BranchManager> getAllBranchManagers() {
+        return branchManagerService.getAllBranchManagers();
+    }
+
+    @GetMapping("/branch/{id}")
+    public ResponseEntity<Branch> getBranchById(@PathVariable Long id) {
+        Branch branch = branchService.getBranchById(id).orElseThrow(() -> new RuntimeException("Branch not found"));
+        return ResponseEntity.ok(branch);
+    }
+
+    @PostMapping("/createBranch")
+    public Branch createBranch(@RequestBody Branch branch) {
+        return branchService.createBranch(branch);
+    }
+
+    @PostMapping("/createBranchManager")
+    public BranchManager createBranchManager(@RequestBody BranchManager branchManager) {
+        return branchManagerService.createBranchManager(branchManager);
+    }
+
+    @PutMapping("/updateBranch/{id}")
+    public ResponseEntity<Branch> updateBranch(@PathVariable Long id, @RequestBody Branch branchDetails) {
+        Branch updatedBranch = branchService.updateBranch(id, branchDetails);
+        return ResponseEntity.ok(updatedBranch);
+    }
+
+    @PutMapping("/updateBranchManager/{id}")
+    public ResponseEntity<BranchManager> updateBranchManager(@PathVariable Long id, @RequestBody BranchManager branchManagerDetails) {
+        BranchManager updatedBranchManager = branchManagerService.updateBranchManager(id, branchManagerDetails);
+        return ResponseEntity.ok(updatedBranchManager);
+    }
+
+    @DeleteMapping("/deleteBranch/{id}")
+    public ResponseEntity<Void> deleteBranch(@PathVariable Long id) {
+        branchService.deleteBranch(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/deleteBranchManager/{id}")
+    public ResponseEntity<Void> deleteBranchManager(@PathVariable Long id) {
+        branchManagerService.deleteBranchManager(id);
+        return ResponseEntity.noContent().build();
+    }
+}

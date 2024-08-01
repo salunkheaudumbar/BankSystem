@@ -1,0 +1,37 @@
+package com.example.service;
+
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TwilioService {
+
+	@Value("${twilio.fromPhone}")
+	private String fromPhone;
+
+	private String otp;
+
+	public void sendSMS(String toPhone, String message) {
+		// Ensure the phone number is in E.164 format
+		if (!toPhone.startsWith("+")) {
+			toPhone = "+91" + toPhone; // Default to +91 for Indian numbers
+		}
+
+		Message.creator(new PhoneNumber(toPhone), new PhoneNumber(fromPhone), message).create();
+	}
+
+	public String generateOtp() {
+		Random random = new Random();
+		otp = String.format("%06d", random.nextInt(1000000));
+		return otp;
+	}
+
+	public boolean verifyOtp(String inputOtp) {
+		return otp != null && otp.equals(inputOtp);
+	}
+}
